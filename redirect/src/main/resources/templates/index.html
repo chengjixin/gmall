@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+		<title></title>
+	</head>
+	<body>
+	fasdfadsaf
+		<form action="./login" method="post">
+			<input class="user" type="text" placeholder="请输入用户名" name="uName" value=""> <br>
+			<input class="password" type="password" placeholder="请输入密码" name="password" value="">
+			<input id="btn" type="button" value="登录">
+		</form>
+	</body>
+
+	<script type="text/javascript">
+		let user = $(".user").val();
+		let pass = $(".password").val();
+
+		console.log(user);
+		console.log(pass);
+
+		$("#btn").click(function () {
+			if (user == null || pass ==null){
+				alert("账号或密码不能为空");
+			}else{
+				$.post("/login",$("#loginForm").serialize(),function (data) {
+					if (data != "fail"){
+						//登录成功,页面跳转
+						window.location.href = "/item.html"
+					}else{
+						//登录失败
+						alert("账号或密码错误");
+					}
+				})
+			}
+			return ;
+		})
+	</script>
+
+</html>
